@@ -1,0 +1,59 @@
+{% extends 'hltv/base.html' %}
+{% load static %}
+{% block title %}  News {% endblock %}
+
+
+<!-- <a href="{% url 'hltv:index' %} " class="text-left">
+    <img src="{% static 'hltv/img/hltv_img.png' %}" >
+    <h1 class="text-light">HLTV</h1>
+</a> -->
+
+{% block content %} 
+
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-2">
+            <a href="/hltv/" class="text-decoration-none" >
+                <img src="{% static 'hltv/img/hltv_img.png' %} " class="w-3">
+                <h1>HLTV</h1>
+            </a>
+            
+        </div>
+        <div class="col-7 text-center text-warning">
+            <h2 class="pt-5">Tyt mozhe bytu vasha reklama</h2>
+        </div>
+        
+        
+    </div>
+    <br>
+     
+    <h1 class="text-light"> News</h1>
+    <div class="row">
+        <div class="col-3 text-light ">
+            SMTH
+        </div>
+
+        <div class="col-6 text-light text-center">
+            {% for new in all_newses %}
+            
+                <a href="{{new.url_detail}}" class="text-decoration-none text-right">
+                    <h5 class="text-left"> {{ new.title }}</h3>
+                 
+                </a>
+            <br>
+            {% endfor %}
+        </div>
+        <div class="col-3 text-light text-center">
+            SMTH
+        </div>
+      </div>
+
+
+    
+      
+    
+</div> 
+
+{% endblock %}

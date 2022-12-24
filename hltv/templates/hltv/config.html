@@ -1,0 +1,26 @@
+{% extends 'hltv/base.html' %}
+{% load static %}
+{% block title %}  Config {% endblock %}
+
+
+{% block content %} 
+
+<h1 class="text-light">
+    <img src="{% static 'hltv/img/settings.png' %}" width="25">
+    Configure HLTV
+</h1>
+
+{% if user.is_staff %}
+<div class="row">
+    <div class="col-6 text-right text-warning">
+        <form method="post" action="{% url 'hltv:add-team' %}" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{tf.as_p}}
+            <input type="submit" value="Add">
+        </form>
+    </div>
+</div>
+{% endif %}
+
+
+{% endblock %}

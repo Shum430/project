@@ -1,0 +1,44 @@
+{% extends 'hltv/base.html' %}
+{% load static %}
+{% block title %}  HLTV {% endblock %}
+
+
+{% block content %} 
+
+<h1 class="text-light">Authentication</h1>
+
+
+<form action="{% url 'hltv:user-login' %}" method="post" class="text-light">
+    {% csrf_token %}
+    <table>
+        <tr>
+            <td>username:</td>
+            <td>
+                <input type="text" name="username" >
+            </td>
+        </tr>
+
+        <tr>
+            <td>password:</td>
+            <td>
+                <input type="password" name="password" >
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <input type="submit" value="log in" class="btn btn-warning">
+            </td>   
+        </tr>
+
+    </table>
+    {% if message %}
+    <h3 class="text-center text-danger"> 
+        {{message}}
+
+    </h3>
+    {% endif %}
+</form>
+
+
+{% endblock %}
+

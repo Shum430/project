@@ -1,0 +1,153 @@
+{% extends 'hltv/base.html' %}
+{% load static %}
+{% block title %}  HLTV {% endblock %}
+
+
+<!-- <a href="{% url 'hltv:index' %} " class="text-left">
+    <img src="{% static 'hltv/img/hltv_img.png' %}" >
+    <h1 class="text-light">HLTV</h1>
+</a> -->
+
+{% block content %} 
+<div class="container">
+    <div class="row">
+        <div class="col-2">
+            <a href="/hltv/" class="text-decoration-none" >
+                <img src="{% static 'hltv/img/hltv_img.png' %} " class="w-3">
+                <h1>HLTV</h1>
+            </a>
+            
+        </div>
+        <div class="col-7 text-center text-warning">
+            <h2 class="pt-5">Tyt mozhe bytu vasha reklama</h2>
+        </div>
+        
+        
+        
+    </div>
+    <br>
+    <div class="row">
+        <div class="col-3 text-light ">
+            <a href="{% url 'hltv:team-list' %}" class="text-decoration-none text-left">
+                <h6 style="color:gray" >Ranking</h6>
+            </a>
+            {% for team in best_teams %}
+
+            <a href="{{ team.url_detail  }}" class="text-decoration-none " >
+                <h5 style="display: inline-block;  color:gray; text-align: left;"> {{ team.rank }}</h5>
+                <img src="{{ team.logo.url }} "width='30' style="display: inline-block ;text-align: left;">  
+                <h5 class="mt-2" style="display: inline-block;  color:gray; text-align: left;">  {{ team.name }}</h5>
+            
+                
+                <!-- <h5 style="display: inline-block;">{{ team.points }}</h5>   -->
+                    
+                
+            <br>
+            {% endfor %}
+            
+            <br>
+            <br>
+
+            <a href="/events" class="text-decoration-none text-left">
+                <h5 class="text-secondary text-left" style="color:gray">Event</h5>
+            </a>
+            {% for event in events %}
+            <a href="{{ event.url_detail  }}" class="text-decoration-none text-secondary">
+                <img src="{{ event.logo.url }} "width='30'>  
+                <h5 class="mt-3 "style="display: inline-block;  color:gray; text-align: left;"> {{ event.name }}</h5>
+                
+             
+            </a>
+            <br>
+            {% endfor %}
+            </a>
+        </div>
+        <div class="col-1"></div>
+
+        <div class="col-4 text-light text-center ">
+            {% for new in newses %}
+            
+                <a href="{{ new.url_detail  }}" class="text-decoration-none text-right">
+                    <h5 class="text-left text-secondary">{{ new.title }}</h3>
+                 
+                </a>
+            <br>
+            {% endfor %}
+        </div>
+        <div class="col-1"></div>
+
+        <div class="col-3 text-light text-center">
+            {% for matc in matches %}
+            
+            <a href="{{matc.url_detail}}" class="text-decoration-none text-right text-secondary" > 
+                    
+                 <table>
+                    <tr >
+                        <th>
+                            <div class="row text-align-left">
+                                {{matc.team1}}
+                            </div>
+                        </th>
+                        <th></th>
+                    </tr>
+
+                    <th></th>
+                    <th>
+                        <div class="row text-align-right">
+                            13:30
+                        </div>
+                    </th>
+
+                    <tr >
+                        <th>
+                            <div class="row text-align-left">
+                                {{matc.team2}}
+                            </div>
+                        </th>
+                        <th></th>
+                    </tr>
+                    <br>
+
+
+                 </table>
+
+            </a>
+            <br>
+            {% endfor %}
+
+            
+
+
+
+        </div>
+      </div>
+
+    
+    {% if user.is_authenticated and user.favs.all %}
+
+    <div class="row">
+        <h1 class="text-warning">Favourite Teams</h1>
+        {% for team in user.favs.all %}
+        <div class="col-3 pt-2">
+            <a href="{{ team.url_detail  }}"><img src="{{ team.logo.url }}" class="w-50 h-50 rounded"></a>
+            <h5 class="text-secondary">
+                <a href="{{ team.url_detail  }} " class="text-decoration-none">
+                    {{ team.name }}
+                </a>
+            </h5>
+        </div>
+        {% endfor %}
+    </div>      
+
+
+
+    {% endif %}
+
+
+    
+      
+    
+</div> 
+
+{% endblock %}
+

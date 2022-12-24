@@ -1,0 +1,153 @@
+{% extends 'hltv/base.html' %}
+{% load static %}
+
+{% block title %} {{ player.first }} {{ player.last }} {% endblock %}
+
+
+{% block content %}
+
+<div class="row">
+    <div class="row">
+        <div class="col-2">
+            <a href="/hltv/" class="text-decoration-none" >
+                <img src="{% static 'hltv/img/hltv_img.png' %} " class="w-3">
+                <h1>HLTV</h1>
+            </a>
+            
+        </div>
+        <div class="col-7 text-center text-warning">
+            <h2 class="pt-5">Tyt mozhe bytu vasha reklama</h2>
+        </div>
+        
+        
+    </div>
+    
+    
+</div>
+
+<div class="row text-danger">
+    <div class="col-2">
+        SMTH    
+    </div>
+
+
+    <div class="col-8">
+        <div class="row">
+            <div class="col-3">
+                <img src="{{ player.logo.url }}" width="175" height="250" class="rounded">
+            </div>
+
+            <div class="col-1"> </div>
+
+            <div class="col-2">
+                <div class="row text-center">
+                    {{ player.nickname }}
+                </div>
+
+                <br>
+
+                <div class="row">
+                    {{ player.first }}  {{ player.last }}
+                </div>
+
+
+                <br>
+
+                <div class="row">
+                    Age:
+                </div>
+
+
+                <br>
+
+                <div class="row">
+                    Current team:
+                </div>
+
+
+                <br>
+
+                <div class="row">
+                    Major achievements:
+                </div>
+            </div>
+
+
+            
+            <div class="col-1"> </div>
+
+            <div class="col-2">
+                <div class="row text-center">
+                    <div class="col-4">
+                        {% if player.inst %}
+                        <div class="row">
+                            <a href="{{ player.inst }}">
+                                <img src="{% static 'hltv/img/instagram.png' %}" width="20">
+                            </a>
+                        </div>
+                        {% endif %}
+                    </div>
+
+                    <div class="col-4">
+                        {% if player.twitter %}
+                        <div class="row">
+                            <a href="{{ player.twitter }}">
+                                <img src="{% static 'hltv/img/twitter.png' %}" width="20">
+                            </a>
+                        </div>
+                        {% endif %}
+                    </div>
+
+                    <div class="col-4">
+                        {% if player.twitch %}
+                        <div class="row">
+                            <a href="{{ player.twitch }}">
+                                <img src="{% static 'hltv/img/twitch.png' %}" width="20">
+                            </a>
+                        </div>
+                        {% endif %}
+                    </div>
+                    
+                </div>
+
+                <br>
+
+                <div class="row">
+                    
+                </div>
+
+
+                <br>
+
+                <div class="row">
+                    {{player.age}}:
+                </div>
+
+
+                <br>
+
+                <div class="row">
+                    {{ player.current_team }}
+                </div>
+
+
+                <br>
+
+                <div class="row">
+                    {% if player.major_ach %}
+                    {{ player.major_ach.read.decode }}
+                    {% else %}
+                    will be soon, gl)
+                    {% endif %}
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="col-2">
+        SMTH
+    </div>
+
+</div>
+{% endblock %}

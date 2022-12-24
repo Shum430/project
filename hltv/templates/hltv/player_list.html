@@ -1,0 +1,105 @@
+{% extends 'hltv/base.html' %}
+{% load static %}
+{% block title %}  Players {% endblock %}
+
+
+<!-- <a href="{% url 'hltv:index' %} " class="text-left">
+    <img src="{% static 'hltv/img/hltv_img.png' %}" >
+    <h1 class="text-light">HLTV</h1>
+</a> -->
+
+{% block content %} 
+
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-2">
+            <a href="/hltv/" class="text-decoration-none" >
+                <img src="{% static 'hltv/img/hltv_img.png' %} " class="w-3">
+                <h1>HLTV</h1>
+            </a>
+            
+        </div>
+        <div class="col-7 text-center text-warning">
+            <h2 class="pt-5">Tyt mozhe bytu vasha reklama</h2>
+        </div>
+        
+        
+    </div>
+    <br>
+     
+    <h1 class="text-light"> All Players </h1>
+    <br>
+    <br>  
+    
+    <div class="row">
+    <div class="col-2 text-light">
+        SMTH
+    </div>
+     
+    <div class="col-8 text-light ">
+        <div class="row text-danger">
+            <div class="col-2">
+                portrait
+            </div>
+
+            <div class="col-2">
+                nickname
+            </div>
+
+            <div class="col-2">
+                rating
+            </div>
+
+            <div class="col-2">
+                maps_played
+            </div>
+
+            <br>
+            <br>
+        </div>
+         {% for player in all_players %} 
+        <a href="{{player.url_detail}} " class="text-decoration-none">
+            
+            <!-- <div class="col-2">
+                
+            </div>
+            <div class="col-2">
+                
+            </div> -->
+
+            <div class="row text-warning">
+                <div class="col-2">
+                    <img src="{{ player.logo.url }}" width="50">
+                </div>
+
+                <div class="col-2">
+                    {{ player.nickname }}
+                </div>
+
+                <div class="col-2">
+                    {{ player.rating }}
+                </div>
+
+                <div class="col-2">
+                    {{ player.maps_played }}
+                </div>
+
+                
+            </div>
+            <br>
+        </a>
+        {% endfor %}
+    </div>
+    
+    <div class="col-2 text-light">
+        SMTH
+    </div>
+
+    </div>
+      
+    
+</div> 
+
+{% endblock %}

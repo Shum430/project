@@ -1,0 +1,67 @@
+{% extends 'hltv/base.html' %}
+{% load static %}
+{% block title %} Search {% endblock %}
+
+
+
+
+{% block content %} 
+
+<h1 class="text-light"> Search by "{{match}}" </h1>
+
+<h3 class="text-warning">
+    found teams: {{teams|length}}
+</h3>
+{% for team in teams %}
+<div class="row">
+    <div class="col-2">
+        <img src="{{ team.logo.url }} " class="w-50 h-75 rounded">
+    </div>
+    <div class="col-8">
+        <a href="{{ team.url_detail }} " class="text-decoration-none">
+            <h4 class="text-light"> {{team}} </h4>
+        </a>
+    </div>
+    
+</div>
+{% endfor %}
+<br>
+
+<h3 class="text-warning">
+    found players: {{players|length}}
+</h3>
+{% for player in players %}
+<div class="row">
+    <div class="col-2 text-warning">
+        <!-- {{player.nickname}} -->
+        <img src="{{ player.logo.url }} " class="w-50 h-75 rounded">
+    </div>
+    <div class="col-8">
+        <a href="{{ player.url_detail }} " class="text-decoration-none">
+            <h4 class="text-light"> {{player.first}}  "{{player.nickname}}" {{player.last}}</h4>
+        </a>
+    </div>
+    
+</div>
+{% endfor %}
+<br>
+
+<h3 class="text-warning">
+    found events: {{events|length}}
+</h3>
+{% for event in events %}
+<div class="row">
+    <div class="col-2 text-warning">
+        <!-- {{player.nickname}} -->
+        <img src="{{ event.logo.url }} " class="w-50 h-75 rounded">
+    </div>
+    <div class="col-8">
+        <a href="{{ event.url_detail }} " class="text-decoration-none">
+            <h4 class="text-light"> {{event.name}} </h4>
+        </a>
+    </div>
+    
+</div>
+
+{% endfor %}
+{% endblock %}

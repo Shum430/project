@@ -1,0 +1,112 @@
+{% extends 'hltv/base.html' %}
+{% load static %}
+
+{% block title %} {{match}} ({{match.stage}}){% endblock %}
+
+
+{% block content %}
+
+<div class="row">
+    <div class="row">
+        <div class="col-2">
+            <a href="/hltv/" class="text-decoration-none" >
+                <img src="{% static 'hltv/img/hltv_img.png' %} " class="w-3">
+                <h1>HLTV</h1>
+            </a>
+            
+        </div>
+        <div class="col-7 text-center text-warning">
+            <h2 class="pt-5">Tyt mozhe bytu vasha reklama</h2>
+            <br>
+            <br>
+        </div>
+        
+        
+    </div>
+   
+</div>    
+
+<div class="row">
+    
+    <div class="col-2 text-danger">
+        SMTH
+    </div>
+
+    <div class="col-8 text-light">
+        <div class="row">
+        
+            <div class="col-4 text-warning">
+                <a href="{{ match.team1.url_detail }}" class="text-decoration-none">
+                    <img src="{{ match.team1.logo.url }} " width="75" height="100"><br>
+                    {{match.team1}}
+                </a>
+            </div>
+        
+            <div class="col-4 text-warning" >
+                <div class="row" style="text-align:center ;">____________________/\____________________</div>
+                <div class="row" style="text-align:center ;">{{ match.stage }}</div>
+                <div class="row" style="text-align:center ;">{{ match.tournament }}</div>
+                <div class="row" style="text-align:center ;">____________________\/____________________</div>
+                
+            </div>
+        
+            <div class="col-4 text-warning">
+                <a href="{{ match.team2.url_detail }}">
+                    <img src="{{ match.team2.logo.url }}" width="75" height="100"><br>
+                    {{match.team2}}
+                </a>
+            </div>
+        
+        
+        </div>
+
+        <div class="row text-danger">
+            <h1>Bets with shum430</h1>
+            <br>
+            <h3>{{ match.team1 }} {{ match.coef1 }}      <br>vs<br>     {{ match.team2 }} {{ match.coef2 }}</h3>
+        </div>
+
+    </div>
+    <div class="col-2 text-danger">
+        SMTH
+    </div>
+</div>
+
+
+
+
+
+</div>
+    {% if match.comments.all %}
+    <h4 class="text-light">Comments ({{match.comments.all|length}})</h4>
+
+    {% for comment in match.comments.all %}
+    <p class="text-secondary"> 
+        <img src="{{ comment.author.addon.ava.url }}" width="27">
+        <span class="text-light">
+            {{ comment.author.username }}
+        </span>
+        <span style="font-size: 120% ">
+        {{comment}}
+        </span>
+
+
+        <span class="text-light">{{ comment.published|timesince }}</span>
+    </p>
+    {% endfor %}
+    {% endif %}
+
+    {% if user.is_authenticated %}
+    <form action="{% url 'hltv:add-new-comment' match.id %}"
+    method="post">
+        {% csrf_token %}
+        {{ mcf }}
+        <input type="submit" value="add">
+    </form>
+    {% endif %}
+
+
+
+
+
+{% endblock %}

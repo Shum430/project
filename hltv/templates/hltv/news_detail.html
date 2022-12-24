@@ -1,0 +1,56 @@
+{% extends 'hltv/base.html' %}
+{% load static %}
+
+{% block title %} {{ news }}{% endblock %}
+
+
+{% block content %}
+
+<div class="row">
+    <div class="row">
+        <div class="col-2">
+            <a href="/hltv/" class="text-decoration-none" >
+                <img src="{% static 'hltv/img/hltv_img.png' %} " class="w-3">
+                <h1>HLTV</h1>
+            </a>
+            
+        </div>
+        <div class="col-7 text-center text-warning">
+            <h2 class="pt-5">Tyt mozhe bytu vasha reklama</h2>
+        </div>
+        
+    
+    </div>
+    
+    <div class="col-8">
+        <h1 class="text-light"> {{ news.title }}</h1>
+        <br>
+        <br> 
+    </div>
+       
+
+    <div class="col-4 ">
+        <a href="{% url 'hltv:news-list'%}" class="text-decoration-none">
+            <h5 class="text-secondary">back to all news</h5>
+        </a>
+    </div>
+
+    <div class="row">
+
+        <div class="col-2">
+            SMTH
+        </div>
+
+        <div class="col-8">
+            <h4 class="text-warning">
+                {{ news.content.read.decode }}
+            </h4>
+        </div>
+        <div class="col-2">
+            SMTH
+        </div>
+    </div>  
+    
+</div>
+
+{% endblock %}
